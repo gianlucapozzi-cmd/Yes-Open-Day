@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@import "react-international-phone/style.css";
+
+@theme {
+  /* COLORI — estratti da logo/YES ENGLISH SCHOOL.png (Guidelines.md senza hex) */
+  --color-brand: #ff0015; /* primario: rosso fumetto sinistro */
+  --color-brand-dark: #cc0010; /* hover: primario scurito ~80% */
+  --color-ink: #1c1c1c; /* testo/outline scuro del logo */
+  --color-muted: #5b5b66; /* neutro secondario — non presente in logo/guideline */
+  --color-surface: #ffffff; /* fondo logo */
+  --color-surface-alt: #f6f6f4; /* sezioni alternate — non presente in logo/guideline */
+  --color-accent: #005ea4; /* secondario: blu fumetto destro */
+  --color-promo: #ffc72c; /* giallo/oro — solo badge promozione -20% */
+
+  /* TIPOGRAFIA */
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Permanent Marker", ui-sans-serif, system-ui, cursive;
+
+  /* RAGGI E OMBRE */
+  --radius-card: 20px;
+  --shadow-card: 0 8px 30px rgba(20, 20, 27, 0.08);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: var(--color-surface);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100svh;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
