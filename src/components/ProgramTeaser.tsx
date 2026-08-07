@@ -20,13 +20,13 @@ const FASCE: {
 }[] = [
   {
     icon: FaceSmileIcon,
-    title: 'Early Years',
+    title: 'Kids',
     detail: '3–5 anni',
     tone: 'brand',
   },
   {
     icon: PuzzlePieceIcon,
-    title: 'Primary',
+    title: 'Children',
     detail: '6–11 anni',
     tone: 'accent',
   },
@@ -58,7 +58,7 @@ export function ProgramTeaser({ onCtaClick }: ProgramTeaserProps) {
   return (
     <Section id="programma" className="bg-accent/[0.08]" decor="band">
       <h2 className="text-center text-3xl font-extrabold text-ink md:text-4xl">
-        Un programma per ogni età
+        Un programma per ogni età ed esigenze
       </h2>
 
       <motion.ul

@@ -35,9 +35,9 @@ export function ConsulenzaHero({ onCtaClick }: ConsulenzaHeroProps) {
           animate="show"
         >
           <motion.img
-            src="/logo-yes.png?v=3"
+            src="/logo-yes.svg?v=13"
             alt="YES! Your English School"
-            className="mb-4 h-16 w-auto sm:h-20"
+            className="mb-4 h-14 w-auto sm:h-16"
             variants={fadeUp}
           />
 

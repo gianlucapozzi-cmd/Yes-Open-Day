@@ -38,9 +38,9 @@ export function Hero({ onCtaClick }: HeroProps) {
           animate="show"
         >
           <motion.img
-            src="/logo-yes-on-dark.png"
+            src="/logo-yes.svg?v=13"
             alt="YES! Your English School"
-            className="mb-3 h-16 w-auto drop-shadow-sm sm:mb-4 sm:h-[4.5rem]"
+            className="mb-3 h-14 w-auto drop-shadow-sm sm:mb-4 sm:h-16"
             variants={fadeUp}
           />
 
