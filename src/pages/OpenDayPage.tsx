@@ -2,11 +2,12 @@ import { useState } from 'react'
 import {
   AcademicCapIcon,
   ChatBubbleLeftRightIcon,
+  GlobeAltIcon,
+  MapPinIcon,
   SparklesIcon,
   TagIcon,
   UserGroupIcon,
   UsersIcon,
-  GlobeAltIcon,
 } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
 import { Footer } from '../components/Footer'
@@ -51,6 +52,21 @@ const SEDI = [
     date: '18 settembre',
     time: '17:00–20:00',
     value: 'Pasteur',
+  },
+] as const
+
+const INFO_SEDI = [
+  {
+    sede: 'YES! Melzo',
+    address: 'Via Cristoforo Colombo, 6/C, 20066 Melzo MI',
+  },
+  {
+    sede: 'YES! Milano Lambrate',
+    address: 'Via Giovanni Pacini, 39, 20131 Milano MI',
+  },
+  {
+    sede: 'YES! Milano Pasteur',
+    address: 'Via Marco Aurelio, 8, 20127 Milano MI',
   },
 ] as const
 
@@ -220,7 +236,36 @@ export function OpenDayPage() {
         </div>
       </Section>
 
-      <Footer />
+      <Section id="info-open-day" className="bg-surface" decor="section">
+        <h2 className="text-center text-3xl font-extrabold text-ink md:text-4xl">
+          Info Open Day
+        </h2>
+        <motion.ul
+          className="mt-8 grid gap-5 lg:grid-cols-3"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          {INFO_SEDI.map((item) => (
+            <motion.li
+              key={item.sede}
+              className="flex h-full gap-3 rounded-card border border-black/5 bg-surface p-6 shadow-card"
+              variants={fadeUp}
+            >
+              <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+                <MapPinIcon className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <div>
+                <h3 className="text-lg font-bold text-ink">{item.sede}</h3>
+                <p className="mt-1 text-base text-muted">{item.address}</p>
+              </div>
+            </motion.li>
+          ))}
+        </motion.ul>
+      </Section>
+
+      <Footer showBrand />
       <StickyCTA label="Prenota il tuo posto" targetId="lead-form" />
     </div>
   )
