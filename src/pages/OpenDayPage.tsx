@@ -23,15 +23,23 @@ import { fadeUp, stagger } from '../lib/motion'
 
 const SEDE_OPTIONS: SedeOption[] = [
   {
-    value: 'Melzo',
-    label: 'Melzo — 19 e 26 settembre',
+    value: 'Melzo — 19 settembre',
+    label: 'Melzo — 19 settembre',
   },
   {
-    value: 'Lambrate',
-    label: 'Lambrate — 19 e 26 settembre',
+    value: 'Melzo — 26 settembre',
+    label: 'Melzo — 26 settembre',
   },
   {
-    value: 'Pasteur',
+    value: 'Lambrate — 19 settembre',
+    label: 'Lambrate — 19 settembre',
+  },
+  {
+    value: 'Lambrate — 26 settembre',
+    label: 'Lambrate — 26 settembre',
+  },
+  {
+    value: 'Pasteur — 18 settembre (17:00–20:00)',
     label: 'Pasteur — 18 settembre (17:00–20:00)',
   },
 ]
@@ -39,19 +47,29 @@ const SEDE_OPTIONS: SedeOption[] = [
 const SEDI = [
   {
     sede: 'YES! Melzo',
-    date: '19 e 26 settembre',
-    value: 'Melzo',
+    date: '19 settembre',
+    value: 'Melzo — 19 settembre',
+  },
+  {
+    sede: 'YES! Melzo',
+    date: '26 settembre',
+    value: 'Melzo — 26 settembre',
   },
   {
     sede: 'YES! Milano Lambrate',
-    date: '19 e 26 settembre',
-    value: 'Lambrate',
+    date: '19 settembre',
+    value: 'Lambrate — 19 settembre',
+  },
+  {
+    sede: 'YES! Milano Lambrate',
+    date: '26 settembre',
+    value: 'Lambrate — 26 settembre',
   },
   {
     sede: 'YES! Milano Pasteur',
     date: '18 settembre',
     time: '17:00–20:00',
-    value: 'Pasteur',
+    value: 'Pasteur — 18 settembre (17:00–20:00)',
   },
 ] as const
 
@@ -132,7 +150,7 @@ export function OpenDayPage() {
         </div>
       </Section>
 
-      <ProgramTeaser onCtaClick={() => prenota()} />
+      <ProgramTeaser />
 
       <Section id="sedi" className="bg-brand/[0.05]" decor="section">
         <h2 className="text-center text-3xl font-extrabold text-ink md:text-4xl">
