@@ -74,7 +74,6 @@ export function LeadForm({
   showInteresse = false,
   showPercorso = false,
   defaultInteresse = '',
-  whatsappUrl,
   submitLabel = 'Invia',
   className = '',
   selectedSede,
