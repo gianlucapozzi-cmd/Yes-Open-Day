@@ -248,6 +248,8 @@ export function OpenDayPage() {
             source="landing-open-day"
             campaign="open-day-settembre"
             showPercorso
+            thankYouPath="/grazie-open-day"
+            submittedStorageKey="yes-openday-lead-submitted"
             submitLabel="Prenota il tuo posto"
             selectedSede={selectedSede}
             onSedeChange={setSelectedSede}

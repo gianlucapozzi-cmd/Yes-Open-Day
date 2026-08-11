@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { PhoneInput } from 'react-international-phone'
+import { useNavigate } from 'react-router-dom'
 import { submitLead } from '../lib/submitLead'
 
 export type SedeOption = {
@@ -23,6 +24,10 @@ type LeadFormProps = {
   /** Pre-selezione sede (es. da SedeCard) */
   selectedSede?: string
   onSedeChange?: (value: string) => void
+  /** Path di redirect dopo submit riuscito (solo dopo fetch ok) */
+  thankYouPath?: string
+  /** Chiave sessionStorage per sbloccare la thank you page */
+  submittedStorageKey?: string
 }
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
@@ -74,7 +79,10 @@ export function LeadForm({
   className = '',
   selectedSede,
   onSedeChange,
+  thankYouPath = '/grazie-open-day',
+  submittedStorageKey = 'yes-openday-lead-submitted',
 }: LeadFormProps) {
+  const navigate = useNavigate()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -115,51 +123,50 @@ export function LeadForm({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    event.stopPropagation()
+
     const nextErrors = validate()
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
 
+    const payload: Record<string, unknown> = {
+      // Chiavi usate dalla landing / Apps Script consulenza
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      email: email.trim(),
+      phone,
+      sede,
+      source,
+      campaign,
+      privacy_consent: true,
+      submitted_at: new Date().toISOString(),
+      // Alias allineati alle colonne del foglio Open Day
+      // (nome | cognome | email | numero di telefono | percorso | sede)
+      nome: firstName.trim(),
+      cognome: lastName.trim(),
+      telefono: phone,
+      'numero di telefono': phone,
+    }
+    // Open Day: percorso obbligatorio nel body webhook
+    if (showPercorso) payload.percorso = percorso
+    if (showInteresse) payload.interesse = interesse
+
     setStatus('submitting')
     try {
-      await submitLead({
-        first_name: firstName.trim(),
-        last_name: lastName.trim(),
-        email: email.trim(),
-        phone,
-        sede,
-        ...(showPercorso ? { percorso } : {}),
-        ...(showInteresse ? { interesse } : {}),
+      // Redirect SOLO dopo fetch webhook ok (come consulenza)
+      console.log('[LeadForm] submit → submitLead', {
         source,
         campaign,
-        privacy_consent: true,
-        submitted_at: new Date().toISOString(),
+        showPercorso,
+        thankYouPath,
       })
-      setStatus('success')
-    } catch {
+      await submitLead(payload)
+      sessionStorage.setItem(submittedStorageKey, '1')
+      navigate(thankYouPath, { replace: true })
+    } catch (err) {
+      console.error('[LeadForm] submit failed', err)
       setStatus('error')
     }
-  }
-
-  if (status === 'success') {
-    return (
-      <div
-        className={`rounded-card border border-black/5 bg-surface p-6 text-center shadow-card sm:p-8 ${className}`.trim()}
-        role="status"
-      >
-        <h3 className="text-xl font-bold text-ink">Grazie!</h3>
-        <p className="mt-2 text-muted">Ti ricontatteremo a breve.</p>
-        {whatsappUrl ? (
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-dark"
-          >
-            Scrivici su WhatsApp
-          </a>
-        ) : null}
-      </div>
-    )
   }
 
   const fieldClass =
