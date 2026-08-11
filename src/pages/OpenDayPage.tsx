@@ -247,6 +247,7 @@ export function OpenDayPage() {
             sedeOptions={SEDE_OPTIONS}
             source="landing-open-day"
             campaign="open-day-settembre"
+            showPercorso
             submitLabel="Prenota il tuo posto"
             selectedSede={selectedSede}
             onSedeChange={setSelectedSede}

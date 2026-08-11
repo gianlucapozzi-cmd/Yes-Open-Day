@@ -13,6 +13,8 @@ type LeadFormProps = {
   source: string
   campaign: string
   showInteresse?: boolean
+  /** Mostra select Percorso (Open Day) */
+  showPercorso?: boolean
   /** Pre-selezione Interesse (es. da UTM campaign) */
   defaultInteresse?: string
   whatsappUrl?: string
@@ -27,12 +29,34 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
 type FormErrors = Partial<
   Record<
-    'firstName' | 'lastName' | 'email' | 'phone' | 'sede' | 'interesse' | 'privacy',
+    | 'firstName'
+    | 'lastName'
+    | 'email'
+    | 'phone'
+    | 'percorso'
+    | 'sede'
+    | 'interesse'
+    | 'privacy',
     string
   >
 >
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+const PERCORSO_OPTIONS = [
+  'Early Years Kids (3–5 anni)',
+  'Children-Primary (6–7 anni, 1ª–2ª elementare)',
+  'Children-Primary (8–11 anni, 3ª–5ª elementare)',
+  'Junior-Lower Secondary (11–14 anni, scuola media)',
+  'Teens (15–18 anni, scuola superiore)',
+  'Adulto Beginner (A1–A2)',
+  'Adulto Intermediate (B1)',
+  'Advanced (B2/C1)',
+  'Lingua - Spagnolo',
+  'Lingua - Francese',
+  'Lingua - Giapponese',
+  'Consulenze didattiche',
+] as const
 
 function isValidE164(phone: string) {
   return /^\+[1-9]\d{7,14}$/.test(phone)
@@ -43,6 +67,7 @@ export function LeadForm({
   source,
   campaign,
   showInteresse = false,
+  showPercorso = false,
   defaultInteresse = '',
   whatsappUrl,
   submitLabel = 'Invia',
@@ -54,6 +79,7 @@ export function LeadForm({
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [percorso, setPercorso] = useState('')
   const [sedeInternal, setSedeInternal] = useState('')
   const [interesse, setInteresse] = useState(defaultInteresse)
   const [privacy, setPrivacy] = useState(false)
@@ -80,6 +106,7 @@ export function LeadForm({
     if (!phone.trim() || !isValidE164(phone)) {
       next.phone = 'Inserisci un numero di telefono valido'
     }
+    if (showPercorso && !percorso) next.percorso = 'Seleziona un percorso'
     if (!sede) next.sede = 'Seleziona una sede'
     if (showInteresse && !interesse) next.interesse = 'Seleziona un interesse'
     if (!privacy) next.privacy = 'Devi accettare la privacy policy'
@@ -100,6 +127,7 @@ export function LeadForm({
         email: email.trim(),
         phone,
         sede,
+        ...(showPercorso ? { percorso } : {}),
         ...(showInteresse ? { interesse } : {}),
         source,
         campaign,
@@ -240,6 +268,37 @@ export function LeadForm({
             </p>
           ) : null}
         </div>
+
+        {showPercorso ? (
+          <div className="sm:col-span-2">
+            <label htmlFor="lead-percorso" className={labelClass}>
+              Percorso
+            </label>
+            <select
+              id="lead-percorso"
+              name="percorso"
+              value={percorso}
+              onChange={(e) => setPercorso(e.target.value)}
+              className={fieldClass}
+              aria-invalid={Boolean(errors.percorso)}
+              aria-describedby={
+                errors.percorso ? 'lead-percorso-error' : undefined
+              }
+            >
+              <option value="">Seleziona un percorso</option>
+              {PERCORSO_OPTIONS.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            {errors.percorso ? (
+              <p id="lead-percorso-error" className={errorClass} role="alert">
+                {errors.percorso}
+              </p>
+            ) : null}
+          </div>
+        ) : null}
 
         <div className={showInteresse ? '' : 'sm:col-span-2'}>
           <label htmlFor="lead-sede" className={labelClass}>
