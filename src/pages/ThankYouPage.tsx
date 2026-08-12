@@ -19,7 +19,7 @@ export function ThankYouPage() {
   }
 
   if (!allowed) {
-    return <Navigate to="/open-day" replace />
+    return <Navigate to="/" replace />
   }
 
   return (

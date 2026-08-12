@@ -7,11 +7,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/open-day" replace />} />
-        <Route path="/open-day" element={<OpenDayPage />} />
+        <Route path="/" element={<OpenDayPage />} />
+        <Route path="/open-day" element={<Navigate to="/" replace />} />
         <Route path="/grazie-open-day" element={<ThankYouPage />} />
         <Route path="/consulenza" element={<ConsulenzaPage />} />
-        <Route path="*" element={<Navigate to="/open-day" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   )
