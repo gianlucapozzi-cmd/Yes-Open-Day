@@ -70,56 +70,80 @@ type SedeProgram = {
   groups: ScheduleGroup[]
 }
 
+const MELZO_ADULTI: ScheduleGroup = {
+  heading: 'Adulti',
+  note: 'Trial Class',
+  rows: [
+    { time: '14:00–14:30', title: 'Beginner (A1–A2)' },
+    { time: '15:00–15:30', title: 'Intermediate (B1)' },
+    { time: '16:00–16:30', title: 'Advanced (B2/C1)' },
+  ],
+}
+
+const MELZO_CONSULENZE: ScheduleGroup = {
+  heading: 'Consulenze didattiche',
+  note: 'Su prenotazione',
+  rows: [
+    {
+      time: '14:00–16:30',
+      title:
+        'Inglese e altre lingue (spagnolo, francese, tedesco, italiano per stranieri)',
+      bookingRequired: true,
+    },
+  ],
+}
+
+const MELZO_BAMBINI_BASE: ScheduleRow[] = [
+  { time: '9:45–10:15', title: 'Early Years Kids (3–5 anni)' },
+  {
+    time: '10:15–10:45',
+    title: 'Children-Primary (6–7 anni, 1ª–2ª elementare)',
+  },
+  {
+    time: '11:00–11:30',
+    title: 'Children-Primary (8–11 anni, 3ª–5ª elementare)',
+  },
+  {
+    time: '11:45–12:15',
+    title: 'Junior-Lower Secondary (11–14 anni, scuola media)',
+  },
+  {
+    time: '12:30–13:00',
+    title: 'Teens (15–18 anni, scuola superiore)',
+  },
+]
+
 const PROGRAMS: SedeProgram[] = [
   {
-    id: 'melzo',
-    label: 'Melzo',
-    subtitle: '19 e 26 Settembre · 9:30–16:30',
+    id: 'melzo-19',
+    label: 'Melzo 19',
+    subtitle: '19 Settembre · 9:30–16:30',
+    groups: [
+      {
+        heading: 'Bambini e Ragazzi',
+        note: 'Trial Lesson + Course Presentation per i genitori',
+        rows: MELZO_BAMBINI_BASE,
+      },
+      MELZO_ADULTI,
+      MELZO_CONSULENZE,
+    ],
+  },
+  {
+    id: 'melzo-26',
+    label: 'Melzo 26',
+    subtitle: '26 Settembre · 9:30–16:30',
     groups: [
       {
         heading: 'Bambini e Ragazzi',
         note: 'Trial Lesson + Course Presentation per i genitori',
         rows: [
-          { time: '9:45–10:15', title: 'Early Years Kids (3–5 anni)' },
-          {
-            time: '10:15–10:45',
-            title: 'Children-Primary (6–7 anni, 1ª–2ª elementare)',
-          },
-          {
-            time: '11:00–11:30',
-            title: 'Children-Primary (8–11 anni, 3ª–5ª elementare)',
-          },
-          {
-            time: '11:45–12:15',
-            title: 'Junior-Lower Secondary (11–14 anni, scuola media)',
-          },
-          {
-            time: '12:30–13:00',
-            title: 'Teens (15–18 anni, scuola superiore)',
-          },
+          ...MELZO_BAMBINI_BASE,
+          { time: '14:30–15:00', title: 'Early Years Kids (3–5 anni)' },
+          { time: '15:30–16:00', title: 'Junior e Teens (14–17 anni)' },
         ],
       },
-      {
-        heading: 'Adulti',
-        note: 'Trial Class',
-        rows: [
-          { time: '14:00–14:30', title: 'Beginner (A1–A2)' },
-          { time: '15:00–15:30', title: 'Intermediate (B1)' },
-          { time: '16:00–16:30', title: 'Advanced (B2/C1)' },
-        ],
-      },
-      {
-        heading: 'Consulenze didattiche',
-        note: 'Su prenotazione',
-        rows: [
-          {
-            time: '14:00–16:30',
-            title:
-              'Inglese e altre lingue (spagnolo, francese, tedesco, italiano per stranieri)',
-            bookingRequired: true,
-          },
-        ],
-      },
+      MELZO_ADULTI,
+      MELZO_CONSULENZE,
     ],
   },
   {
