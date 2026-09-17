@@ -154,9 +154,9 @@ const PROGRAMS: SedeProgram[] = [
       {
         heading: 'Young Learners (3–18 anni)',
         rows: [
-          { time: '10:30–11:00', title: 'Early Years Kids (3–5 anni)' },
-          { time: '11:00–11:30', title: 'Children-Primary 1-2 (6–7 anni)' },
-          { time: '11:30–12:00', title: 'Children-Primary 3-4-5 (8–11 anni)' },
+          { time: '10:00–10:30', title: 'Early Years Kids (3–5 anni)' },
+          { time: '10:30–11:00', title: 'Children-Primary 1-2 (6–7 anni)' },
+          { time: '11:00–11:30', title: 'Children-Primary 3-4-5 (8–11 anni)' },
           { time: '12:00–12:30', title: 'Junior-Lower Secondary (11–14 anni)' },
           { time: '12:00–12:30', title: 'Teens (15–18 anni)' },
         ],
