@@ -39,8 +39,8 @@ const SEDE_OPTIONS: SedeOption[] = [
     label: 'Lambrate — 26 settembre',
   },
   {
-    value: 'Pasteur — 18 settembre (17:00–20:00)',
-    label: 'Pasteur — 18 settembre (17:00–20:00)',
+    value: 'Pasteur — 3 ottobre',
+    label: 'Pasteur — 3 ottobre',
   },
 ]
 
@@ -67,9 +67,8 @@ const SEDI = [
   },
   {
     sede: 'YES! Milano Pasteur',
-    date: '18 settembre',
-    time: '17:00–20:00',
-    value: 'Pasteur — 18 settembre (17:00–20:00)',
+    date: '3 ottobre',
+    value: 'Pasteur — 3 ottobre',
   },
 ] as const
 

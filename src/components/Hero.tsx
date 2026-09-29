@@ -81,7 +81,7 @@ export function Hero({ onCtaClick }: HeroProps) {
               Melzo &amp; Lambrate · 19 e 26 settembre
             </span>
             <span className="inline-flex min-h-9 items-center rounded-full bg-white/90 px-4 py-1.5 text-sm font-semibold text-accent shadow-sm">
-              Pasteur · 18 settembre, 17:00–20:00
+              Pasteur · 3 ottobre
             </span>
           </motion.div>
 

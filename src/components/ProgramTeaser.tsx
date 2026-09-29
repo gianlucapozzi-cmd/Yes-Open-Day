@@ -186,26 +186,26 @@ const PROGRAMS: SedeProgram[] = [
   {
     id: 'pasteur',
     label: 'Pasteur',
-    subtitle: 'Venerdì 18 Settembre · 17:00–20:30',
+    subtitle: 'Sabato 3 Ottobre · 10:00–20:30',
     groups: [
       {
         heading: 'Bambini e Ragazzi',
         note: 'Trial Lesson + Course Presentation per i genitori',
         rows: [
+          { time: '10:30–11:00', title: 'Children-Primary (6–7 anni)' },
+          { time: '10:30–11:00', title: 'Children-Primary (8–11 anni)' },
+          { time: '12:00–12:30', title: 'Junior-Lower Secondary (11–14 anni)' },
           { time: '17:00–17:30', title: 'Early Years Kids (3–5 anni)' },
-          { time: '17:30–18:00', title: 'Children-Primary (6–7 anni)' },
-          { time: '18:00–18:30', title: 'Children-Primary (8–11 anni)' },
           { time: '18:00–18:30', title: 'Teens (15–18 anni)' },
-          { time: '18:30–19:00', title: 'Junior-Lower Secondary (11–14 anni)' },
         ],
       },
       {
         heading: 'Adulti',
         note: 'Trial Class',
         rows: [
-          { time: '18:30–19:00', title: 'Beginner (A1–A2)' },
-          { time: '19:00–19:30', title: 'Intermediate (B1)' },
-          { time: '19:30–20:00', title: 'Advanced (B2/C1)' },
+          { time: '10:00–10:30', title: 'Elementary (A1–A2)' },
+          { time: '10:30–11:00', title: 'Intermediate (B1)' },
+          { time: '11:00–11:30', title: 'Advanced (B2/C1)' },
         ],
       },
       {
