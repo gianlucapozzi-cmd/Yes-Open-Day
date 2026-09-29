@@ -186,17 +186,29 @@ const PROGRAMS: SedeProgram[] = [
   {
     id: 'pasteur',
     label: 'Pasteur',
-    subtitle: 'Sabato 3 Ottobre · 10:00–20:30',
+    subtitle: 'Sabato 3 Ottobre · 10:00–13:00',
     groups: [
       {
         heading: 'Bambini e Ragazzi',
         note: 'Trial Lesson + Course Presentation per i genitori',
         rows: [
-          { time: '10:30–11:00', title: 'Children-Primary (6–7 anni)' },
-          { time: '10:30–11:00', title: 'Children-Primary (8–11 anni)' },
-          { time: '12:00–12:30', title: 'Junior-Lower Secondary (11–14 anni)' },
-          { time: '17:00–17:30', title: 'Early Years Kids (3–5 anni)' },
-          { time: '18:00–18:30', title: 'Teens (15–18 anni)' },
+          { time: '10:00–10:30', title: 'Early Years Kids (3–5 anni)' },
+          {
+            time: '10:30–11:00',
+            title: 'Children-Primary (6–7 anni, 1ª–2ª elementare)',
+          },
+          {
+            time: '11:00–11:30',
+            title: 'Children-Primary (8–11 anni, 3ª–4ª–5ª elementare)',
+          },
+          {
+            time: '12:00–12:30',
+            title: 'Junior-Lower Secondary (11–14 anni, scuola media)',
+          },
+          {
+            time: '12:30–13:00',
+            title: 'Teens (15–18 anni, scuola superiore)',
+          },
         ],
       },
       {
@@ -213,7 +225,7 @@ const PROGRAMS: SedeProgram[] = [
         note: 'Su prenotazione',
         rows: [
           {
-            time: '17:00–20:30',
+            time: '10:00–13:00',
             title:
               'Inglese e altre lingue (spagnolo, francese, tedesco, italiano per stranieri)',
             bookingRequired: true,
