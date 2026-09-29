@@ -167,7 +167,7 @@ export function OpenDayPage() {
               key={item.value}
               sede={item.sede}
               date={item.date}
-              time={'time' in item ? item.time : undefined}
+              time={'time' in item ? String(item.time) : undefined}
               onPrenota={() => prenota(item.value)}
             />
           ))}
